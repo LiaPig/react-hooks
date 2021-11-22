@@ -10,7 +10,11 @@ export const getTargetElement = (target, defaultElement = window) => {
   if (typeof target === 'function') {
     targetElement = target()
   } else if ('current' in target) {
-    targetElement = target.current
+    if (target.current) {
+      targetElement = target.current
+    } else {
+      return defaultElement
+    }
   } else {
     targetElement = target
   }
